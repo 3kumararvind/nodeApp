@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+    <title>Welcome To MyApp</title>
+    <%- include('lib'); %>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="login-form-div col-lg-8 col-md-8 col-sm-12">
+          <div class="card border-info">
+            <div class="card-header bg-info">
+              <h4 class="text-center text-white">Login</h4>
+            </div>
+            <div class="card-body">            
+              <form class="" action="/" method="post">
+                <label for="username"> <strong>Username <span class="mandatory">*</span> </strong> </label>
+                <input class="form-control" type="text" name="usernameInput" minlength="6" required>
+                <label for="pwd"> <strong>Password <span class="mandatory">*</span> </strong> </label>
+                <input class="form-control" type="password" name="pwdi" required>
+                <br>
+                <div class="row">
+                  <div class="col-lg-6 col-md-6">
+                    <button class="btn btn-block btn-success"type="submit" name="button">Login</button>
+                  </div>
+                  <div class="col-lg-6 col-md-6">
+                    <button class="btn btn-block btn-danger"type="reset" name="button">Reset</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </body>
+</html>
