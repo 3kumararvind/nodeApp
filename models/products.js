@@ -6,6 +6,10 @@ const AutoIncrement = require('mongoose-sequence')(mongoose);
 //Role schema
 
 const productSchema = new Schema({
+  product_id:{
+    type:Number,
+    unique:true
+   },
   name:{
     type:String,
   },
@@ -14,12 +18,14 @@ const productSchema = new Schema({
   },
   quantity:{
     type:Number
+  },
+  record_creation : {
+    type : Date,
+    default: Date.now
   }
 });
 
-productSchema.plugin(AutoIncrement, {inc_field: 'product_id'});
-
 //add roles model
-const product_model = new mongoose.model("product_model", productSchema);
+const product_model = new mongoose.model("product", productSchema);
 
 module.exports = product_model;

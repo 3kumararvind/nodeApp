@@ -27,14 +27,18 @@ const userSchema = new Schema({
 
   },
   roleId:{
-    type:String,
+    type:Number,
     required:true
+  },
+  record_creation : { 
+    type : Date,
+    default: Date.now
   }
 });
 
 userSchema.plugin(AutoIncrement, {inc_field: 'id'});
 
 //add roles model
-const users_models = new mongoose.model("users_models", userSchema);
+const users_models = new mongoose.model("user", userSchema);
 
 module.exports = users_models;

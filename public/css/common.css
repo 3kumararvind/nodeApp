@@ -1,3 +1,9 @@
 body{margin:0px;padding:0px; }
 .mandatory{color: red;}
+.opDiv{margin: 30px auto; border:solid 2px black; border-top-left-radius: 20px; border-bottom-right-radius: 20px;padding: 20px; }
+.opDiv .btn{margin: 5px;}
 .login-form{margin: 10px auto;}
+.main-content{margin: 20px auto; max-width: 800px; box-shadow: 5px 5px 5px 5px #888888; padding: 20px;border-top-left-radius: 20px; border-bottom-right-radius: 20px;}
+
+.registration-form{padding: 20px;}
+.main-content .btn{margin-top: 10px;}
