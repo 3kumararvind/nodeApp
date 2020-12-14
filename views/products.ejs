@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+    <title>products</title>
+    <%- include('lib'); %>
+  </head>
+  <body>
+    <div class="container">
+      <div class="main-content">
+        <div class="card border-success">
+          <div class="card-header bg-success">
+            <h5 class="text-white text-center"> <strong>Product Details</strong> </h5>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <div class="table-responsive">
+                  <table class="table table-bordered table-sm table-striped">
+                    <thead>
+                      <tr>
+                        <th class="text-center">Product Id</th>
+                        <th class="text-center">Product Name</th>
+                        <th class="text-center">Unit Price(INR)</th>
+                        <th class="text-center">Quantity</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% products.forEach(function(product){ %>
+                        <tr>
+                          <td class="text-center"><%= product.product_id %></td>
+                          <td class="text-center"><%= product.name %></td>
+                          <td class="text-center"><%= product.price %></td>
+                          <td class="text-center"><%= product.quantity %></td>
+                        </tr>
+                      <% }) %>
+
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+            <div class="row text-center">
+              <div class="col">
+                  <a class="btn btn-sm btn-primary" href="/"> <strong>Home</strong> </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>

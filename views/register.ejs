@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+    <title>Registration</title>
+    <%- include('lib'); %>
+  </head>
+  <body>
+    <div class="container">
+      <div class="main-content">
+        <div class="card border-success">
+          <div class="card-header bg-success">
+            <h5 class="text-white text-center"> <strong>Register</strong> </h5>
+          </div>
+          <form class="registration-form" action="/register" method="post">
+            <% if(successMsg!=''){ %>
+              <div class="alert alert-success">
+                <p class="text-center"><%= successMsg %> </p>
+              </div>
+            <% } %>
+            <% if(errMsg!=''){ %>
+              <div class="alert alert-danger">
+                <p class="text-center"><%= errMsg %> </p>
+              </div>
+            <% } %>
+            <div class="form-group">
+              <label for="name"> <strong>Name<span class="mandatory">*</span></strong> </label>
+              <input class="form-control" type="text" name="userName" id="userName" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+              <label for="email"> <strong>Email <span class="mandatory">*</span></strong> </label>
+              <input class="form-control" type="email" name="email" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+              <label for="registerAs"> <strong>Register As <span class="mandatory">*</span></strong> </label>
+              <select class="form-control" name="registerAs" id="registerAs" required>
+                <option value="">--- Select ---</option>
+                <option value="Merchant">Merchant</option>
+                <option value="User">User</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="phone"><strong>Phone Number: <span class="mandatory">*</span></strong></label>
+              <input class="form-control" type="text" name="phone" id="phone" minlength="10" maxlength="10" placeholder="Enter Your Mobile Number"  pattern="[6789]{1}[0-9]{9}" title="Mobile number must with 6 or 7 or 8 or 9 and must be of 10 digit" onkeypress="return event.charCode>=48 && event.charCode<=57" required>
+            </div>
+            <div class="form-group">
+              <label for="password"> <strong>Password <span class="mandatory">*</span></strong> </label>
+              <input class="form-control" type="password" name="password" id="password" minlength="6" placeholder="Enter your password" required>
+            </div>
+            <div class="form-group">
+              <label for="cnfpassword"> <strong>Confirm Password <span class="mandatory">*</span></strong> </label>
+              <input class="form-control" type="password" name="cnfpassword" id="cnfpassword" minlength="6" placeholder="Enter password again" required>
+            </div>
+            <div class="row">
+              <div class="col-lg-6 col-md-6">
+                <button class="btn btn-block btn-outline-success" type="submit" name="registerButton">Register</button>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <button class="btn btn-block btn-outline-danger" type="reset" name="button">Reset</button>
+              </div>
+             </div>
+              <div class="row">
+                <div class="col">
+                  <p class="text-center">Are you already registered? <a href="/login"> <strong>click here to login</strong> </a></p>
+                  <p class="text-center"><a href="/"> <strong>Go To Home Page</strong> </a></p>
+                </div>
+              </div>
+
+          </form>
+          </div>
+      </div>
+
+      </div>
+    </div>
+
+    <script type="text/javascript">
+        var password = document.getElementById("password"),
+        cnfpassword = document.getElementById("cnfpassword");
+
+      function validatePassword(){
+        if(password.value != cnfpassword.value) {
+          cnfpassword.setCustomValidity("Passwords Don't Match! Please enter password again");
+        } else {
+          cnfpassword.setCustomValidity('');
+        }
+      }
+
+      password.onchange = validatePassword;
+      cnfpassword.onkeyup = validatePassword;
+    </script>
+
+  </body>
+</html>

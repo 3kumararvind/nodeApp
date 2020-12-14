@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+    <title>Login</title>
+    <%- include('lib'); %>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="main-content col-lg-8 col-md-8 col-sm-12">
+          <div class="card  border-success">
+            <div class="card-header bg-success">
+              <h5 class="text-center text-white"> <strong>Login</strong> </h5>
+            </div>
+            <div class="card-body">
+              <%  if(loginErrMsg.length!=0){ %>
+                  <div class="alert alert-danger">
+                     <p class="text-center"><strong> <%= loginErrMsg %></strong></p>
+                  </div>
+              <%  } %>
+              <form class="" action="/login" method="post">
+                <div class="form-group">
+                  <label for="username"> <strong>Email <span class="mandatory">*</span> </strong> </label>
+                  <input class="form-control" type="email" id="username" name="username" minlength="6" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                  <label for="pwd"> <strong>Password <span class="mandatory">*</span> </strong> </label>
+                  <input class="form-control" type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-6 col-md-6">
+                    <button class="btn btn-block btn-outline-success" type="submit" name="loginbutton">Login</button>
+                  </div>
+                  <div class="col-lg-6 col-md-6">
+                    <button class="btn btn-block btn-outline-danger" type="reset" name="button">Reset</button>
+                  </div>
+                 </div>
+                <div class="row">
+                  <div class="col">
+                    <p class="text-center">Are you already registered? If not, <a href="/register"> <strong>click here</strong> </a> </p>
+                    <p class="text-center"><a href="/"> <strong>Go To Home Page</strong> </a></p>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </body>
+</html>
