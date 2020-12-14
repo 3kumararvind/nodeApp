@@ -13,23 +13,10 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 
-/*
-const initializePassport = require('./passport-config');
-
-initializePassport(passport, username => {
-	return user.find(user => user === user)
-});
-*/
 const AutoIncrement = require('mongoose-sequence')(mongoose);
 const passportLocalMongoose  = require('passport-local-mongoose');
 const LocalStrategy = require('passport-local').Strategy;
 const flash = require('connect-flash');
-
-
-
-
-
-
 
 //start of importing models
 
@@ -268,4 +255,38 @@ app.get('/merchant-dashboard', function(req, res){
 
 app.get('/user-dashboard', function(req, res){
 	res.render('user-dashboard');
+})
+
+app.get('/update-stocks',redirectLogin, function(req, res){
+	console.log("User:"+req);
+	product.find({}).sort({product_id:1}).exec(function(err, products){
+    if(err){
+      console.log(err);
+    }else {
+      res.render('update-stocks',{products:products});
+    }
+  })
+
+})
+
+
+app.post('/update-stocks/:productId/:quantity', function(req, res){
+	let productId = req.params.productId;
+	let newStockQuantity= req.params.quantity;
+	product.findOne({product_id:productId},{quantity:1, _id:0}).exec(function(err, Product){
+    if(err){
+      console.log(err);
+			res.send(err);
+    }else {
+      console.log(Product);
+			let newQuantity = Product.quantity + Number(newStockQuantity);
+	   product.findOneAndUpdate({product_id:productId}, {$set:{quantity:newQuantity}},{new: true}, function(err, updateResult){
+		if(err){
+			res.send(err);
+		}else{
+			res.send("Product Quantity Updated. New quantity:"+updateResult.quantity);
+		}
+	})
+    }
+  })
 })

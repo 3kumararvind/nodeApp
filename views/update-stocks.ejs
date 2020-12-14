@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+    <title>Update Stocks</title>
+    <%- include('lib'); %>
+  </head>
+  <body>
+    <div class="container">
+      <div class="main-content">
+        <div class="card border-success">
+          <div class="card-header bg-success">
+            <h5 class="text-white text-center"> <strong>Update Stocks</strong> </h5>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <div class="table-responsive">
+                  <table class="table table-sm table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th class="text-center">Product Id</th>
+                        <th class="text-center">Product Name</th>
+                        <th class="text-center">Current Quantity</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% products.forEach(function(product){ %>
+                        <tr>
+                          <td class="text-center"><%= product.product_id %></td>
+                          <td class="text-center"><%= product.name %></td>
+                          <td class="text-center"><%= product.quantity %></td>
+                        </tr>
+                      <% }) %>
+
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p>Please select the product below to Update Stocks</p>
+                <form class="" action="#" method="post">
+                  <select class="form-control" name="product" id="product">
+                    <% products.forEach(function(product){ %>
+                      <option value="<%= product.product_id %>"><%= product.name %></option>
+                    <% }) %>
+                  </select>
+                  <div class="form-group">
+                    <label for="newStock">Enter Quantity To Add</label>
+                    <input class="form-control" type="number" name="newStockQuantity" id="newStockQuantity" placeholder="Enter quantity to add in stock" value="" required>
+                  </div>
+                  <div class="form-group text-center">
+                    <button class="btn btn-primary" type="button" name="AddStockButton" id="AddStockButton">Add Stock</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="row text-center">
+              <div class="col">
+                  <a class="btn btn-sm btn-primary" href="/"> <strong>Home</strong> </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#AddStockButton').on('click', function(){
+          var productId = $("#product").val();
+          var quantity = $("#newStockQuantity").val();
+            //alert(productId);
+            //alert(quantity);
+            if(productId==""){
+              alert("Please select any product first");
+            }else if(quantity==""){
+              alert("Please enter Quantity of the product to add.");
+
+            }else{
+              $.ajax({
+                url:"/update-stocks/" + productId + "/" + quantity,
+                method: "POST",
+                contentType: "application/json",
+                success: function(response){
+                  alert(response);
+                  location.reload();
+                },
+                error: function(err){
+                  alert("Error: "+err);
+                }
+              })
+            }
+
+        })
+      })
+    </script>
+  </body>
+</html>
